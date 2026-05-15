@@ -7,4 +7,5 @@
 .env.local
 .env.development.local
 
-.node_modules
+# Node.js dependencies
+node_modules/
