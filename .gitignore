@@ -1,0 +1,12 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.DS_Store
+# Optional npm cache directory
+.npm
+
+.env
+.env.local
+.env.development.local
+
+# Dependency directories
+node_modules
+jspm_packages
