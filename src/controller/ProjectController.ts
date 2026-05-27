@@ -39,10 +39,46 @@ export class ProjectController{
                 res.status(200);
                 res.json(project);
                 console.log("Proyecto obtenido por ID:", project);
+            } else {
+                res.status(404).send("Proyecto no encontrado");
             }
         } catch (error) {
             console.error("Error al obtener el proyecto por ID:", error);
             res.status(500).send("Error al obtener el proyecto por ID");
+        }
+    }
+
+    static async updateProject(req: Request, res: Response){
+        const { id } = req.params;
+        const updatedProject = await Project.findByIdAndUpdate(id, req.body, { new: true });
+        try {
+            if(updatedProject){
+                res.status(200);
+                res.json(updatedProject);
+                console.log("Proyecto actualizado:", updatedProject);
+            } else{
+                res.status(404).send("Proyecto no encontrado");
+            }
+        } catch (error) {
+            console.error("Error al actualizar el proyecto:", error);
+            res.status(500).send("Error al actualizar el proyecto");
+        }
+    }
+
+    static async deleteProject(req: Request, res: Response){
+        const { id } = req.params;
+        const deletedProject = await Project.findByIdAndDelete(id);
+        try {
+            if(deletedProject){
+                res.status(200);
+                res.json(deletedProject);
+                console.log("Proyecto eliminado:", deletedProject);
+            } else {
+                res.status(404).send("Proyecto no encontrado");
+            }
+        } catch (error) {
+            console.error("Error al eliminar el proyecto:", error);
+            res.status(500).send("Error al eliminar el proyecto");
         }
     }
 }
